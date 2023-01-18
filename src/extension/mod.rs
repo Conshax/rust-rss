@@ -23,6 +23,9 @@ pub mod atom;
 /// [iTunes](https://help.apple.com/itc/podcasts_connect/#/itcb54353390) extensions.
 pub mod itunes;
 
+/// Types and methods for [Podcast](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md) extensions.
+pub mod podcast;
+
 /// Types and methods for [Dublin Core](http://dublincore.org/documents/dces/) extensions.
 pub mod dublincore;
 

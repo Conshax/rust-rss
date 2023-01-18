@@ -22,6 +22,7 @@ use crate::error::Error;
 use crate::extension::atom;
 use crate::extension::dublincore;
 use crate::extension::itunes;
+use crate::extension::podcast;
 use crate::extension::syndication;
 use crate::extension::util::{extension_name, parse_extension};
 use crate::extension::ExtensionMap;
@@ -96,6 +97,8 @@ pub struct Channel {
     pub atom_ext: Option<atom::AtomExtension>,
     /// The iTunes extension for the channel.
     pub itunes_ext: Option<itunes::ITunesChannelExtension>,
+    /// The podcast extension for the channel.
+    pub podcast_ext: Option<podcast::PodcastChannelExtension>,
     /// The Dublin Core extension for the channel.
     pub dublin_core_ext: Option<dublincore::DublinCoreExtension>,
     /// The Syndication extension for the channel.
@@ -1315,6 +1318,9 @@ impl Channel {
                         .map(|v| channel.atom_ext = Some(atom::AtomExtension::from_map(v))),
                     itunes::NAMESPACE => channel.extensions.remove(prefix).map(|v| {
                         channel.itunes_ext = Some(itunes::ITunesChannelExtension::from_map(v))
+                    }),
+                    podcast::NAMESPACE => channel.extensions.remove(prefix).map(|v| {
+                        channel.podcast_ext = Some(podcast::PodcastChannelExtension::from_map(v))
                     }),
                     dublincore::NAMESPACE => channel.extensions.remove(prefix).map(|v| {
                         channel.dublin_core_ext = Some(dublincore::DublinCoreExtension::from_map(v))
